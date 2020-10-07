@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name: bkr Hook Snippets
+ * Plugin Name: BKR Hook Snippets
  * Author: Baker
  * Description: Allows you to hook snippets of text to whatever hook you desire.
  */
