@@ -238,28 +238,28 @@ class BKR_Contact_Links {
 		$html = '<div class="bkr_contact_links"><ul>';
 
 		foreach ( $types as $type ) {
-			$label = get_option( 'bkr_contact_links_' . $type . '_label' );
-			$link = get_option( 'bkr_contact_links_' . $type . '_link' );
-			
-			if ( ! $label ) {
-				continue;
-			}
-
-			if ( $link != false ) {
-				$label = '<a href="' . $link . '">' . $label . '</a>';
-			}
-
-			if ( in_array( $type, $exclude_labels ) ) {
-				$label = '';
-			} else {
-				$label = '<span class="label">' . $label . '</span>';
-			}
-
 			if ( ! in_array( $type, $exclude ) ) {
+				$label = get_option( 'bkr_contact_links_' . $type . '_label' );
+				$link = get_option( 'bkr_contact_links_' . $type . '_link' );
+
 				if ( $type == 'contact_number' ) {
-					$html .= '<li><span class="dashicons dashicons-phone icon"></span>' . $label . '</li>';
+					$icon = '<span class="dashicons dashicons-phone icon"></span>';
 				} else {
-					$html .= '<li><span class="dashicons dashicons-' . $type . ' icon"></span>' . $label . '</li>';
+					$icon = '<span class="dashicons dashicons-' . $type . ' icon"></span>';
+				}
+
+				if ( $label == false || in_array( $type, $exclude_labels ) ) {
+					if ( $link == false ) {
+						$html .= '<li>' . $icon . '</li>';
+					} else {
+						$html .= '<li><a href="' . $link .  '">' . $icon . '</a></li>';
+					}
+				} else {
+					if ( $link == false ) {
+						$html .= '<li>' . $icon . $label . '</li>';
+					} else {
+						$html .= '<li><a href="' . $link .  '">' . $icon . $label . '</a></li>';
+					}
 				}
 			}
 		}
