@@ -26,22 +26,22 @@ class BKR_Post_Series {
 		);
 		
 		$args = [
-			"labels" => $labels,
-			"description" => "Group posts as a series",
-			"public" => true,
-			"publicly_querable" => true,
-			"hierarchichal" => false,
-			"show_ui" => true,
-			"show_in_menu" => true,
-			"show_in_nav_menus" => true,
-			"show_in_rest" => true,
-			"rest_base" => "series",
-			"show_tagcloud" => false,
+			"labels" =>             $labels,
+			"description" =>        "Group posts as a series",
+			"public" =>             true,
+			"publicly_querable" =>  true,
+			"hierarchichal" =>      false,
+			"show_ui" =>            true,
+			"show_in_menu" =>       true,
+			"show_in_nav_menus" =>  true,
+			"show_in_rest" =>       true,
+			"rest_base" =>          "series",
+			"show_tagcloud" =>      false,
 			"show_in_quick_edit" => true,
-			"show_admin_column" => true,
-			"capabilities" => ['manage_terms', 'edit_terms', 'delete_terms', 'assign_terms'],
-			"rewrite" => true,
-			"query_var" => "series",
+			"show_admin_column" =>  true,
+			"capabilities" =>       ['manage_terms', 'edit_terms', 'delete_terms', 'assign_terms'],
+			'rewrite' =>            array( 'slug' => 'series' ),
+			"query_var" =>          "series",
 		];
 
 		register_taxonomy( 'series', 'post', $args );
