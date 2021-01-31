@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name: BKR Contact
+ * Plugin Name: BKR Contacts
  * Author: Baker
  * Description: Display contact links in "zones" defined by the theme
  */
