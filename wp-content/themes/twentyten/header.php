@@ -61,6 +61,8 @@ if ( is_singular() && get_option( 'thread_comments' ) ) {
 </head>
 
 <body <?php body_class(); ?>>
+<?php do_action("bkr_contacts_zone", "header"); ?>
+<?php do_action("bkr_contacts_zone", "footer"); ?>
 <?php wp_body_open(); ?>
 <div id="wrapper" class="hfeed">
 	<div id="header">

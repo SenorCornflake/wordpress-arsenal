@@ -1,0 +1,36 @@
+.bkr_contacts_zone {
+	margin-top: 1rem;
+	margin-left: 1rem;
+	margin-bottom: 1rem;
+}
+
+.bkr_contacts_zone_title {
+	margin-bottom: 0;
+}
+
+.bkr_contacts_contact_title {
+	font-size: 1.2rem;
+	margin-top: 0.5rem;
+	margin-bottom: 0;
+}
+
+.bkr_contacts_contact {
+	padding-bottom: 1rem;
+	margin-bottom: 1rem;
+	border-bottom: solid 1px #bbbbbb;
+}
+
+.bkr_contacts_item {
+	margin-top: 1rem;
+	margin-left: 1rem;
+	max-width: 400px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.bkr_contacts_item label {
+	margin-right: 3rem;
+	font-weight: bold;
+	color: #000;
+}
