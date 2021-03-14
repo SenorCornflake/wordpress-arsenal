@@ -1,0 +1,7 @@
+.bkr-gallery-block img {
+	display: none;
+}
+.bkr-gallery-block .current {
+	display: block;
+	max-width: 100%;
+}
