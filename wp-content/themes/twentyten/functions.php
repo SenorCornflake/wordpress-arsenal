@@ -52,12 +52,6 @@ if ( ! isset( $content_width ) ) {
 
 /* Tell WordPress to run twentyten_setup() when the 'after_setup_theme' hook is run. */
 add_action( 'after_setup_theme', 'twentyten_setup' );
-add_action("after_setup_theme", function(){
-	if (class_exists("BKR_Contacts")) {
-		BKR_Contacts::register_zone("header", "Header");
-		BKR_Contacts::register_zone("footer", "Footer");
-	}
-});
 
 if ( ! function_exists( 'twentyten_setup' ) ) :
 	/**

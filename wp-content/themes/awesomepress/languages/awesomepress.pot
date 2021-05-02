@@ -1,0 +1,315 @@
+# Copyright (C) 2017 Surror
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: AwesomePress 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/style\n"
+"POT-Creation-Date: 2017-10-28 19:03:12+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: grunt-wp-i18n 0.5.4\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+
+#: 404.php:19
+msgid "Oops! That page can&rsquo;t be found."
+msgstr ""
+
+#: 404.php:33
+msgid "It looks like nothing was found at this location. Maybe try a search?"
+msgstr ""
+
+#: archive.php:54 index.php:69 search.php:65
+msgid " Previous"
+msgstr ""
+
+#: archive.php:55 index.php:70 search.php:66
+msgid "Next"
+msgstr ""
+
+#: comments.php:53 comments.php:87
+msgid "Comment navigation"
+msgstr ""
+
+#: comments.php:60 comments.php:94
+msgid "Older Comments"
+msgstr ""
+
+#: comments.php:64 comments.php:98
+msgid "Newer Comments"
+msgstr ""
+
+#: comments.php:112
+msgid "Comments are closed."
+msgstr ""
+
+#: footer.php:22
+msgid "https://wordpress.org/"
+msgstr ""
+
+#: footer.php:23
+msgid "Proudly powered by %s"
+msgstr ""
+
+#: footer.php:25 inc/template-tags.php:145 inc/template-tags.php:157
+msgid "|"
+msgstr ""
+
+#: footer.php:26
+msgid "Theme: %1$s"
+msgstr ""
+
+#: functions.php:66
+msgid "Primary"
+msgstr ""
+
+#: functions.php:156
+msgid "Right Sidebar"
+msgstr ""
+
+#: functions.php:158 functions.php:169
+msgid "Add widgets here."
+msgstr ""
+
+#: functions.php:167
+msgid "Left Sidebar"
+msgstr ""
+
+#: header.php:29
+msgid "Skip to content"
+msgstr ""
+
+#: header.php:54
+msgid "Primary Menu"
+msgstr ""
+
+#: inc/customizer/customizer.php:60
+msgid "Site Title & Tagline Color"
+msgstr ""
+
+#: inc/customizer/customizer.php:61
+msgid "Body Background Color"
+msgstr ""
+
+#: inc/customizer/customizer.php:106
+msgid "Sidebars"
+msgstr ""
+
+#: inc/customizer/customizer.php:130 inc/customizer/customizer.php:222
+msgid "Archive"
+msgstr ""
+
+#: inc/customizer/customizer.php:131
+msgid "Container width for archive pages."
+msgstr ""
+
+#: inc/customizer/customizer.php:132
+msgid ""
+"Container width is applied for the blog, category, tag and custom post type "
+"archive pages."
+msgstr ""
+
+#: inc/customizer/customizer.php:161 inc/customizer/customizer.php:249
+msgid "Single Post"
+msgstr ""
+
+#: inc/customizer/customizer.php:162
+msgid "Container width for the single post."
+msgstr ""
+
+#: inc/customizer/customizer.php:163
+msgid "Container width is applied for the single post."
+msgstr ""
+
+#: inc/customizer/customizer.php:192 inc/customizer/customizer.php:276
+msgid "Page"
+msgstr ""
+
+#: inc/customizer/customizer.php:193
+msgid "Container width for the page."
+msgstr ""
+
+#: inc/customizer/customizer.php:194
+msgid "Container width is applied for the pages."
+msgstr ""
+
+#: inc/customizer/customizer.php:223
+msgid "Add sidebar layout for blog, archive, category tag pages."
+msgstr ""
+
+#: inc/customizer/customizer.php:227 inc/customizer/customizer.php:254
+#: inc/customizer/customizer.php:281
+msgid "Full Width ( No Sidebar )"
+msgstr ""
+
+#: inc/customizer/customizer.php:228 inc/customizer/customizer.php:255
+#: inc/customizer/customizer.php:282
+msgid "Left Sidebar / Content"
+msgstr ""
+
+#: inc/customizer/customizer.php:229 inc/customizer/customizer.php:256
+#: inc/customizer/customizer.php:283
+msgid "Content / Right Sidebar"
+msgstr ""
+
+#: inc/customizer/customizer.php:230 inc/customizer/customizer.php:257
+#: inc/customizer/customizer.php:284
+msgid "Content / Left Sidebar / Right Sidebar"
+msgstr ""
+
+#: inc/customizer/customizer.php:231 inc/customizer/customizer.php:258
+#: inc/customizer/customizer.php:285
+msgid "Left Sidebar / Content / Right Sidebar"
+msgstr ""
+
+#: inc/customizer/customizer.php:232 inc/customizer/customizer.php:259
+#: inc/customizer/customizer.php:286
+msgid "Left Sidebar / Right Sidebar / Content"
+msgstr ""
+
+#: inc/customizer/customizer.php:250
+msgid "Add sidebar layout for single post only."
+msgstr ""
+
+#: inc/customizer/customizer.php:277
+msgid "Add sidebar layout for pages only."
+msgstr ""
+
+#: inc/extras.php:195
+#. translators: %s: Name of current post
+msgid "Continue reading %s"
+msgstr ""
+
+#: inc/template-tags.php:143
+msgid "Tagged with: <span class=\"tags-links\">%s</span>"
+msgstr ""
+
+#: inc/template-tags.php:161
+#. translators: %s: post title
+msgid "Leave a Comment<span class=\"screen-reader-text\"> on %s</span>"
+msgstr ""
+
+#: inc/template-tags.php:174
+msgid ", "
+msgstr ""
+
+#: index.php:22
+msgid "Blog"
+msgstr ""
+
+#: search.php:21
+msgid "Search Results for: %s"
+msgstr ""
+
+#: search.php:26
+msgid "Nothing Found"
+msgstr ""
+
+#: single.php:48
+msgid "Previous Article %s"
+msgstr ""
+
+#: single.php:49
+msgid "Next Article %s"
+msgstr ""
+
+#: template-parts/content-none.php:18
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: template-parts/content-none.php:22
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: template-parts/content-none.php:28
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+
+#: template-parts/content-page.php:22 template-parts/content.php:45
+#. translators: %s: Name of current post
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr ""
+
+#: template-parts/content-page.php:29 template-parts/content.php:52
+msgid "Pages:"
+msgstr ""
+
+#: template-parts/content.php:79
+msgid "Edit"
+msgstr ""
+
+#. Theme Name of the plugin/theme
+msgid "AwesomePress"
+msgstr ""
+
+#. Theme URI of the plugin/theme
+msgid "http://awesomepress.surror.com/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Customizable, SEO ready theme."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Surror"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://profiles.wordpress.org/surror/"
+msgstr ""
+
+#: comments.php:33
+#. translators: %s: post title
+msgctxt "comments title"
+msgid "One Reply to &ldquo;%s&rdquo;"
+msgstr ""
+
+#: comments.php:37
+#. translators: 1: number of comments, 2: post title
+msgctxt "comments title"
+msgid "%1$s Reply to &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s Replies to &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/customizer/customizer-controls.php:97
+msgctxt "Reset the slider customizer control value."
+msgid "Reset"
+msgstr ""
+
+#: inc/customizer/customizer.php:90
+msgctxt "Website Layout"
+msgid "Layout"
+msgstr ""
+
+#: inc/customizer/customizer.php:98
+msgctxt "Website Container"
+msgid "Container"
+msgstr ""
+
+#: inc/template-tags.php:105
+msgctxt "Article last written on date"
+msgid "Last updated on "
+msgstr ""
+
+#: inc/template-tags.php:197
+msgctxt "Article written by"
+msgid "By "
+msgstr ""

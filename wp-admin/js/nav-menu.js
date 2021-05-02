@@ -857,7 +857,7 @@
 
 				if ( e.keyCode === 13 ) {
 					e.preventDefault();
-					$( '#submit-customlinkdiv' ).click();
+					$( '#submit-customlinkdiv' ).trigger( 'click' );
 				}
 			});
 		},
@@ -967,7 +967,7 @@
 				// Remove the Ajax spinner.
 				$( '.customlinkdiv .spinner' ).removeClass( 'is-active' );
 				// Set custom link form back to defaults.
-				$('#custom-menu-item-name').val('').blur();
+				$('#custom-menu-item-name').val('').trigger( 'blur' );
 				$( '#custom-menu-item-url' ).val( '' ).attr( 'placeholder', 'https://' );
 			});
 		},
@@ -1059,7 +1059,7 @@
 				};
 			} else {
 				// Make the post boxes read-only, as they can't be used yet.
-				$( '#menu-settings-column' ).find( 'input,select' ).end().find( 'a' ).attr( 'href', '#' ).unbind( 'click' );
+				$( '#menu-settings-column' ).find( 'input,select' ).end().find( 'a' ).attr( 'href', '#' ).off( 'click' );
 			}
 		},
 
@@ -1141,7 +1141,7 @@
 
 				$.post( ajaxurl, this.href.replace( /.*\?/, '' ).replace( /action=([^&]*)/, '' ) + '&action=menu-get-metabox',
 					function( resp ) {
-						var metaBoxData = $.parseJSON( resp ),
+						var metaBoxData = JSON.parse( resp ),
 							toReplace;
 
 						if ( -1 === resp.indexOf( 'replace-id' ) ) {
@@ -1331,6 +1331,27 @@
 
 	};
 
-	$(document).ready(function(){ wpNavMenu.init(); });
+	$(document).ready(function() {
+
+		wpNavMenu.init();
+
+		// Prevent focused element from being hidden by the sticky footer.
+		$( '.menu-edit a, .menu-edit button, .menu-edit input, .menu-edit textarea, .menu-edit select' ).on('focus', function() {
+			if ( window.innerWidth >= 783 ) {
+				var navMenuHeight = $( '#nav-menu-footer' ).height() + 20;
+				var bottomOffset = $(this).offset().top - ( $(window).scrollTop() + $(window).height() - $(this).height() );
+
+				if ( bottomOffset > 0 ) {
+					bottomOffset = 0;
+				}
+				bottomOffset = bottomOffset * -1;
+
+				if( bottomOffset < navMenuHeight ) {
+					var scrollTop = $(document).scrollTop();
+					$(document).scrollTop( scrollTop + ( navMenuHeight - bottomOffset ) );
+				}
+			}
+		});
+	});
 
 })(jQuery);
