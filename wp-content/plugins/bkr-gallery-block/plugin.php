@@ -7,14 +7,8 @@
 
 defined( "ABSPATH" ) || die;
 
+// Keep this commented just in case I want to use it in the future
 // function bkr_gallery_block_editor_assets() {
-// 	wp_enqueue_style(
-// 		"bkr_gallery_block_editor_styles",
-// 		plugin_dir_url( "src/css/editor.css", __FILE__ ),
-// 		[],
-// 		false,
-// 		"all"
-// 	);
 // }
 // add_action( "enqueue_block_editor_assets", "bkr_gallery_block_editor_assets" );
 
@@ -68,22 +62,13 @@ function bkr_gallery_block_render_callback( $attrs ) {
 	// Just for future reference.
 
 
+	// Keep this here for future debugging
 	// ob_start();
 	// echo "<pre>";
 	// var_dump( $attrs );
 	// echo "</pre>";
 	// return ob_get_clean();
 	
-	/*
-	 * Images: List of images
-	 * Button Location: By indicators, by thumbnails or by sides of images
-	 * Thumbnails: Wrap, scroll, or limit amount or none
-	 * Indicators: Numbered or bullets or none
-	 * Fullscreen: Fullscreen when clicked or not
-	 * Image Overlays: Text ( custom html allowed, but default is white on transparent black overlay )
-	 * Interval: Number means go to next image after X amount of seconds, zero means disable feature
-	 */
-
 	// Default attribute values
 	$images          = ( isset( $attrs["images"] ) )          ? $attrs["images"]          : [];
 	$button_location = ( isset( $attrs["button_location"] ) ) ? $attrs["button_location"] : "image";
@@ -92,23 +77,11 @@ function bkr_gallery_block_render_callback( $attrs ) {
 	$fullscreen      = ( isset( $attrs["fullscreen"] ) )      ? $attrs["fullscreen"]      : false;
 	$interval        = ( isset( $attrs["interval"] ) )        ? $attrs["interval"]        : 0;
 	
-	$default_overlay_background   = "#00000040";
-	$default_overlay_text_color   = "#ffffff";
-	//$default_overlay_width        = "100%";
-	//$default_overlay_height       = "100%";
-	$default_overlay_text_position     = "bottom_left";
-	$default_overlay_text_margins = "10% 10% 10% 10%";
+	// Even though I set the default background in "index.js", I prefer having one here also, just in case.
+	$default_overlay_background   = "rgba(0, 0, 0, 0.20)";
+	$default_overlay_text_color   = "rgba(255,255,255,1)";
 
-	// ob_start();
-	// echo "<pre>";
-	// var_dump($images         );
-	// var_dump($button_location);
-	// var_dump($thumbnails     );
-	// var_dump($indicators     );
-	// var_dump($fullscreen     );
-	// var_dump($interval       );
-	// echo "</pre>";
-	// return ob_get_clean();
+	$default_overlay_text_position     = "bottom_left";
 
 	$prev_button = '<button class="bkr-gallery-block-prev-btn">&larr;</button>';
 	$next_button = '<button class="bkr-gallery-block-next-btn">&rarr;</button>';
@@ -123,17 +96,28 @@ function bkr_gallery_block_render_callback( $attrs ) {
 
 		// Only if overlay text was provided
 		if ( strlen( $image["overlay_text"] ) > 0 ) {
-			$overlay_background    = ( strlen( $image["overlay_background"] ) > 0 )    ? $image["overlay_background"]    : $default_overlay_background;
-			$overlay_text_color    = ( strlen( $image["overlay_text_color"] ) > 0 )    ? $image["overlay_text_color"]    : $default_overlay_text_color;
-			// $overlay_width         = ( strlen( $image["overlay_width"] ) > 0 )         ? $image["overlay_width"]         : $default_overlay_width;
-			// $overlay_height        = ( strlen( $image["overlay_height"] ) > 0 )        ? $image["overlay_height"]        : $default_overlay_height;
+			if ( !empty( $image["overlay_background"] ) ) {
+				$overlay_background = 'rgba(';
+				$overlay_background .= $image["overlay_background"]["rgb"]["r"] . ",";
+				$overlay_background .= $image["overlay_background"]["rgb"]["g"] . ",";
+				$overlay_background .= $image["overlay_background"]["rgb"]["b"] . ",";
+				$overlay_background .= $image["overlay_background"]["rgb"]["a"] . ")";
+			} else {
+				$overlay_background = $default_overlay_background;
+			}
+			if ( !empty( $image["overlay_text_color"] ) ) {
+				$overlay_text_color = 'rgba(';
+				$overlay_text_color .= $image["overlay_text_color"]["rgb"]["r"] . ",";
+				$overlay_text_color .= $image["overlay_text_color"]["rgb"]["g"] . ",";
+				$overlay_text_color .= $image["overlay_text_color"]["rgb"]["b"] . ",";
+				$overlay_text_color .= $image["overlay_text_color"]["rgb"]["a"] . ")";
+			} else {
+				$overlay_text_color = $default_overlay_text_color;
+			}
 			$overlay_text_position = ( strlen( $image["overlay_text_position"] ) > 0 ) ? $image["overlay_text_position"] : $default_overlay_text_position;
-			//$overlay_text_margins  = ( strlen( $image["overlay_text_margins"] ) > 0 )  ? $image["overlay_text_margins"]  : $default_overlay_text_margins;
 
 			$overlay_styles = 'style="';
 			$overlay_styles .= 'background: ' . $overlay_background . ";";
-			// $overlay_styles .= 'width: ' . $overlay_width . ";";
-			// $overlay_styles .= 'height: ' . $overlay_height . ";";
 			switch ($overlay_text_position) {
 				case "top_left":
 					$overlay_styles .= "justify-content: flex-start;align-items:flex-start;";
@@ -166,22 +150,6 @@ function bkr_gallery_block_render_callback( $attrs ) {
 			$overlay_styles .= '"';
 			
 			$overlay_text_styles = 'style="';
-			// I definitely did NOT google how to use a switch statement here
-			//switch ($overlay_text_position) {
-			//	case "top_left":
-			//		$overlay_text_styles .= "top: 0;left:0;";
-			//	break;
-			//	case "top_right":
-			//		$overlay_text_styles .= "top: 0;right:0;";
-			//	break;
-			//	case "bottom_left":
-			//		$overlay_text_styles .= "bottom: 0;left:0;";
-			//	break;
-			//	case "bottom_right":
-			//		$overlay_text_styles .= "top: 0;right:0;";
-			//	break;
-			//}
-			// $overlay_text_styles .= "margin: " . $overlay_text_margins . ";";
 			$overlay_text_styles .= "color: " . $overlay_text_color . ";";
 			$overlay_text_styles .= '"';
 

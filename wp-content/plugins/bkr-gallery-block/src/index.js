@@ -1,6 +1,6 @@
 import { registerBlockType } from "@wordpress/blocks"
 import { MediaUpload, MediaUploadCheck, InspectorControls } from "@wordpress/block-editor";
-import { Button } from "@wordpress/components";
+import { Button, ColorPicker } from "@wordpress/components";
 
 registerBlockType(
 	"bkr-blocks/gallery-block", 
@@ -59,8 +59,6 @@ registerBlockType(
 							overlay_text: old_image_object.overlay_text,
 							overlay_text_color: old_image_object.overlay_text_color,
 							overlay_background: old_image_object.overlay_background,
-							// overlay_width: old_image_object.overlay_width,
-							// overlay_height: old_image_object.overlay_height,
 							overlay_text_position: old_image_object.overlay_text_position,
 							overlay_text_margins: old_image_object.overlay_text_margins,
 						};
@@ -68,10 +66,8 @@ registerBlockType(
 						return {
 							object: image,
 							overlay_text: "",
-							overlay_text_color: "",
-							overlay_background: "",
-							// overlay_width: "",
-							// overlay_height: "",
+							overlay_text_color: { rgb: { r: 255, g: 255, b: 255, a: 1 } },
+							overlay_background: { rgb: { r: 0, g: 0, b: 0, a: 0.20 } },
 							overlay_text_position: "",
 							overlay_text_margins: ""
 						};
@@ -105,18 +101,6 @@ registerBlockType(
 				props.setAttributes( { images: images } );
 			}
 
-		//	const changeOverlayWidth = ( value, index ) => {
-		//		let images = JSON.parse(JSON.stringify(props.attributes.images)); // REFER TO COMMENT ABOVE FOR EXPLANATION
-		//		images[index].overlay_width = value;
-		//		props.setAttributes( { images: images } );
-		//	}
-
-		//	const changeOverlayHeight = ( value, index ) => {
-		//		let images = JSON.parse(JSON.stringify(props.attributes.images)); // REFER TO COMMENT ABOVE FOR EXPLANATION
-		//		images[index].overlay_height = value;
-		//		props.setAttributes( { images: images } );
-		//	}
-
 			const changeOverlayTextPosition = ( value, index ) => {
 				let images = JSON.parse(JSON.stringify(props.attributes.images)); // REFER TO COMMENT ABOVE FOR EXPLANATION
 				images[index].overlay_text_position = value;
@@ -138,6 +122,24 @@ registerBlockType(
 			const removeImages = () => {
 				props.setAttributes( { images: [] } );
 			};
+
+			const toggleColorPicker = ( e ) => {
+
+				let pickers = document.querySelectorAll( ".bkr-gallery-block-color_picker" );
+				for ( let i = 0; i < pickers.length; i++ ) {
+					if ( pickers[i].parentElement != e.target.parentElement ) {
+						pickers[i].style.display = "none";
+					}
+				}
+
+				let picker = e.target.parentElement.querySelector( ".bkr-gallery-block-color_picker" );
+
+				if ( picker.style.display == "block" ) {
+					picker.style.display = "none";
+				} else {
+					picker.style.display = "block";
+				}
+			}
 
 
 			let controls = <InspectorControls>
@@ -192,45 +194,31 @@ registerBlockType(
 										return <div className="bkr-gallery-block-image_preview">
 												<img src={ image.object.url } />
 												<textarea placeholder="Overlay Text"                                                       onChange={ ( e ) => { changeOverlayText( e.target.value, index ) } }>{ image.overlay_text }</textarea>
-												{ //<input type="text" placeholder="Overlay Background"   value={ image.overlay_background }   onChange={ ( e ) => { changeOverlayBackground( e.target.value, index ) } } />
-												}
-												<select                                                                                    onChange={ ( e ) => { changeOverlayBackground( e.target.value, index ); } }>
-													<option value=""          selected={ ( image.overlay_background === "" )          ? true : false }>Overlay Backround</option>
-													<option value="#ff000040" selected={ ( image.overlay_background === "#ff000040" ) ? true : false }>Red</option>
-													<option value="#00ff0040" selected={ ( image.overlay_background === "#00ff0040" ) ? true : false }>Green</option>
-													<option value="#0000ff40" selected={ ( image.overlay_background === "#0000ff40" ) ? true : false }>Blue</option>
-													<option value="#00000040" selected={ ( image.overlay_background === "#00000040" ) ? true : false }>Black</option>
-													<option value="#ffffff40" selected={ ( image.overlay_background === "#ffffff40" ) ? true : false }>White</option>
+												<div class="bkr-gallery-block-color_picker_container">
+													<Button onClick={ ( e ) => toggleColorPicker( e ) } style={{ background: 'rgba(' + image.overlay_background.rgb.r + "," + image.overlay_background.rgb.g + "," + image.overlay_background.rgb.b + "," + image.overlay_background.rgb.a + ")"  }}>
+														Overlay Background
+													</Button>
+													<ColorPicker className="bkr-gallery-block-color_picker" color={ image.overlay_background } onChangeComplete={ ( value ) => changeOverlayBackground( value, index ) }/>
+												</div>
+												<div class="bkr-gallery-block-color_picker_container">
+													<Button onClick={ ( e ) => toggleColorPicker( e ) } style={{ background: 'rgba(' + image.overlay_text_color.rgb.r + "," + image.overlay_text_color.rgb.g + "," + image.overlay_text_color.rgb.b + "," + image.overlay_text_color.rgb.a + ")"  }}>
+														Overlay Text Color
+													</Button>
+													<ColorPicker className="bkr-gallery-block-color_picker" color={ image.overlay_text_color } onChangeComplete={ ( value ) => changeOverlayTextColor( value, index ) }/>
+												</div>
+												<select onChange={ ( e ) => { changeOverlayTextPosition( e.target.value, index ); } }>
+													<option value=""              selected={ ( image.position === "" )              ? true : false }>Overlay Text Position</option>
+													<option value="top_left"      selected={ ( image.position === "top_left" )      ? true : false }>Top Left</option>
+													<option value="top_center"    selected={ ( image.position === "top_center" )    ? true : false }>Top Center</option>
+													<option value="top_right"     selected={ ( image.position === "top_right" )     ? true : false }>Top Right</option>
+													<option value="middle_left"   selected={ ( image.position === "middle_left" )   ? true : false }>Middle Left</option>
+													<option value="middle_center" selected={ ( image.position === "middle_center" ) ? true : false }>Middle Center</option>
+													<option value="middle_right"  selected={ ( image.position === "middle_right" )  ? true : false }>Middle Right</option>
+													<option value="bottom_left"   selected={ ( image.position === "bottom_right" )  ? true : false }>Bottom Left (default)</option>
+													<option value="bottom_center" selected={ ( image.position === "bottom_center" ) ? true : false }>Bottom Center</option>
+													<option value="bottom_right"  selected={ ( image.position === "bottom_left" )   ? true : false }>Bottom Right</option>
 												</select>
-												{//<input type="text" placeholder="Overlay Text Color"   value={ image.overlay_text_color }   onChange={ ( e ) => { changeOverlayTextColor( e.target.value, index ) } } />
-												}
-												<select                                                                                    onChange={ ( e ) => { changeOverlayTextColor( e.target.value, index ); } }>
-													<option value=""          selected={ ( image.overlay_text_color === "" )          ? true : false }>Overlay Text Color</option>
-													<option value="#ff0000" selected={ ( image.overlay_text_color === "#ff0000" ) ? true : false }>Red</option>
-													<option value="#00ff00" selected={ ( image.overlay_text_color === "#00ff00" ) ? true : false }>Green</option>
-													<option value="#0000ff" selected={ ( image.overlay_text_color === "#0000ff" ) ? true : false }>Blue</option>
-													<option value="#000000" selected={ ( image.overlay_text_color === "#000000" ) ? true : false }>Black</option>
-													<option value="#ffffff" selected={ ( image.overlay_text_color === "#ffffff" ) ? true : false }>White</option>
-												</select>
-												{//<input type="text" placeholder="Overlay Width"        value={ image.overlay_width }        onChange={ ( e ) => { changeOverlayWidth( e.target.value, index ) } } />
-												}
-												{//<input type="text" placeholder="Overlay Height"       value={ image.overlay_height }        onChange={ ( e ) => { changeOverlayHeight( e.target.value, index ) } } />
-												}
-												{//<input type="text" placeholder="Overlay Text Margins" value={ image.overlay_text_margins } onChange={ ( e ) => { changeOverlayTextMargins( e.target.value, index ) } } />
-												}
-												<select                                                                                    onChange={ ( e ) => { changeOverlayTextPosition( e.target.value, index ); } }>
-													<option value=""             selected={ ( image.position === "" )                   ? true : false }>Overlay Text Position</option>
-													<option value="top_left"     selected={ ( image.position === "top_left" )           ? true : false }>Top Left</option>
-													<option value="top_center"     selected={ ( image.position === "top_center" )       ? true : false }>Top Center</option>
-													<option value="top_right"    selected={ ( image.position === "top_right" )          ? true : false }>Top Right</option>
-													<option value="middle_left"     selected={ ( image.position === "middle_left" )     ? true : false }>Middle Left</option>
-													<option value="middle_center"     selected={ ( image.position === "middle_center" ) ? true : false }>Middle Center</option>
-													<option value="middle_right"    selected={ ( image.position === "middle_right" )    ? true : false }>Middle Right</option>
-													<option value="bottom_left"  selected={ ( image.position === "bottom_right" )       ? true : false }>Bottom Left</option>
-													<option value="bottom_center"  selected={ ( image.position === "bottom_center" )     ? true : false }>Bottom Center</option>
-													<option value="bottom_right" selected={ ( image.position === "bottom_left" )        ? true : false }>Bottom Right</option>
-												</select>
-												<Button onClick={ () => { removeImage( index ); } } style={{ margin: "5px", display: "flex", justifyContent: "center" }} isDestructive>
+												<Button onClick={ () => { removeImage( index ); } } isDestructive>
 													Remove Image
 												</Button>
 											</div>
@@ -255,7 +243,7 @@ registerBlockType(
 							multiple={ true }
 							value = { props.attributes.images.map( image => image.object.id ) }
 							render = { ( { open } ) => (
-								<Button onClick={ open } style={{ margin: "5px" }} isPrimary>
+								<Button onClick={ open } isPrimary>
 									Add Images
 								</Button>
 							) }

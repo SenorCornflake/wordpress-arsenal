@@ -102,6 +102,7 @@ for ( let i = 0; i < galleries.length; i++ ) {
 	let images = gallery.querySelectorAll( ".bkr-gallery-block-images img" );
 	let indicators = gallery.querySelectorAll( ".bkr-gallery-block-indicators span" );
 	let thumbnails = gallery.querySelectorAll( ".bkr-gallery-block-thumbnails img" );
+	let overlays = gallery.querySelectorAll( ".bkr-gallery-block-image-overlay" );
 
 	let next_btn = gallery.querySelector( ".bkr-gallery-block-next-btn" );
 	let prev_btn = gallery.querySelector( ".bkr-gallery-block-prev-btn" );
@@ -120,7 +121,7 @@ for ( let i = 0; i < galleries.length; i++ ) {
 	}
 
 	for ( let i = 0; i < images.length; i++ ) {
-		// When the images load (if done immediately all images' heights will be "0"), resize the gallery to the largest image
+		// When the all the images load, resize the gallery's height to match the largest image (if done immediately all images' heights will be "0")
 		images[i].addEventListener( "load", function () {
 			setGalleryHeight( gallery, images );
 		});
@@ -131,6 +132,15 @@ for ( let i = 0; i < galleries.length; i++ ) {
 			images[i].addEventListener( "click", function() {
 				gallery.classList.toggle( "fullscreen" );
 			} )
+		}
+	}
+
+	if ( gallery.dataset.fullscreen == "true" ) {
+		for ( let i = 0; i < overlays.length; i++ ) {
+			overlays[i].style.cursor = "pointer";
+			overlays[i].addEventListener( "click", function () {
+				gallery.classList.toggle( "fullscreen" );
+			} );
 		}
 	}
 
