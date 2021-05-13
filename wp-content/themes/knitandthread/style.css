@@ -1,0 +1,164 @@
+/*
+ * Theme Name: Knit and Thread
+ * Author: Baker Khan
+ * Description: A theme based on kinda.co.za for knitandthread
+ */
+
+/* FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+
+body {
+	margin: 0;
+	font-family: 'Lato', sans-serif;
+}
+
+/* Site Header Styles */
+.kat-site-header {
+	display: flex;
+	flex-direction: column;
+	background: #000000;
+	color: #ffffff;
+	position: relative;
+}
+
+.kat-site-header-meta {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.kat-site-header-navigation {
+	display: flex;
+	justify-content: center;
+	padding: 10px 0;
+	border-top: solid 1px #ffffff;
+	font-family: 'Chiva', sans-serif;
+}
+
+.kat-site-header-navigation a {
+	padding: 10px;
+	display: block;
+	cursor: pointer;
+	color: #ffffff;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.kat-site-header-navigation a:active {
+	color: #ffffff;
+}
+
+.kat-site-header-navigation ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+}
+
+.kat-site-header-navigation-hide {
+	position: fixed;
+	top: 0;
+	right: 0;
+	background: none;
+	border: none;
+	padding: 10px;
+	cursor: pointer;
+	color: #ffffff;
+	font-size: 1.5rem;
+	z-index: 99999999999;
+	display: none;
+}
+
+.kat-site-header-navigation-show {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: none;
+	border: none;
+	padding: 10px;
+	cursor: pointer;
+	color: #ffffff;
+	display: none;
+}
+
+.kat-navigation-menu {
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+/* Dropdown related css */
+.kat-navigation-menu .dropdown {
+	position: relative;
+}
+
+.kat-navigation-menu .dropdown > a::after {
+	content: " \2193";
+}
+
+.kat-navigation-menu .dropdown > ul {
+	display: none;
+	flex-direction: column;
+	position: absolute;
+	background: #000000;
+	top: 100%;
+	left: 0;
+}
+.kat-navigation-menu .dropdown > ul ul {
+	top: 0;
+	left: 100%;
+}
+
+.kat-navigation-menu .dropdown:focus-within > ul {
+	display: flex;
+}
+
+/* Header Media Queries */
+@media (max-width: 990px) {
+	.kat-site-header-meta {
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
+@media (max-width: 768px) {
+	.kat-site-header-navigation {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 9999999;
+		width: 100vw;
+		height: 100vh;
+		justify-content: flex-start;
+		padding: 0;
+		background: #00000095;
+		display: none;
+		border: none;
+	}
+
+	.kat-site-header-navigation-hide, .kat-site-header-navigation-show {
+		display: block;
+	}
+
+	.visible {
+		display: flex;
+	}
+
+	.kat-navigation-menu {
+		flex-direction: column;
+		background: #000000;
+		height: 100%;
+		min-width: 300px;
+		flex-wrap: nowrap;
+		overflow-y: scroll;
+		justify-content: flex-start;
+	}
+
+	.kat-navigation-menu .dropdown > ul {
+		position: static;
+		margin-left: 10px;
+		border-left: solid 1px #ffffff;
+	}
+}
